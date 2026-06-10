@@ -1,0 +1,92 @@
+/* ===== FONDO GENERAL ===== */
+body{
+    
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== TITULOS ===== */
+.title{
+    color: #fbbf24;
+    font-weight: 600;
+}
+
+/* ===== CARDS ===== */
+.card{
+    background: #1f2937;
+    border-radius: 15px;
+    border: 1px solid #374151;
+    color: #f9fafb;
+}
+
+/* ===== FORM ===== */
+.form-control{
+    background: #0e1420;
+    border: 1px solid #374151;
+    color: #f9fafb;
+}
+
+.form-control:focus{
+    border-color: #fbbf24;
+    box-shadow: none;
+}
+
+/* ===== BOTONES ===== */
+.btn-success{
+    background: #22c55e;
+    border: none;
+}
+
+.btn-success:hover{
+    background: #16a34a;
+}
+
+.btn-primary{
+    background: #3b82f6;
+    border: none;
+}
+
+.btn-primary:hover{
+    background: #2563eb;
+}
+
+.btn-danger{
+    background: #ef4444;
+    border: none;
+}
+
+.btn-outline-secondary{
+    border-color: #9ca3af;
+    color: #9ca3af;
+}
+
+/* ===== RESUMEN ===== */
+.bg-dark{
+    background: linear-gradient(135deg,#111827,#1f2937) !important;
+}
+
+/* ===== TABLA ===== */
+.table{
+    color: #f9fafb;
+}
+
+.table thead{
+    background: #374151;
+}
+
+.table-success{
+    background: #065f46 !important;
+    color: #d1fae5;
+}
+
+
+/* ===== SOMBRA ===== */
+.shadow-soft{
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+footer{
+    background: #0A5F9E;
+    color: #f7f8f8;
+    padding: 20px 0;
+    text-align: center;
+}

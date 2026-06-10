@@ -1,9 +1,24 @@
 <?php
 require_once "modelos/Mascota.php";
+require_once "modelos/Cliente.php";
 
 class MascotaControlador {
    public function formularioMascota() {
-        require_once __DIR__ . "/../vistas/registrar_mascotas.php";
+        if (!isset($_SESSION["usuario"])) {
+            header("Location: index.php");
+            exit;
+        }
+        
+        $modeloCliente = new Cliente();
+        $resultado = $modeloCliente->obtenerPorUsuario($_SESSION["usuario"]);
+        
+        if ($resultado->num_rows > 0) {
+            $perfil = $resultado->fetch_assoc();
+        } else {
+            $perfil = null;
+        }
+        
+        require_once __DIR__ . "/../vistas/cliente/registrar_mascotas.php";
     }
 
 

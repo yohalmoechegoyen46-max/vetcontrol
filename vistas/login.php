@@ -8,7 +8,7 @@
 </head>
 <body class="contenedor-login">
     <div class="contenedor">
-        <h2>🐾 Sistema Veterinario</h2>
+        <h2>Sistema Veterinario</h2>
         <p class="text-center" style="color: #666; margin-bottom: 30px; font-size: 14px;">Inicia sesión en tu cuenta</p>
 
         <form method="POST" action="index.php?accion=validar">
@@ -22,6 +22,11 @@
         </form>
 
         <hr style="margin: 25px 0; opacity: 0.5;">
+        
+        <div style="margin-bottom: 20px;">
+            <a href="index.php?accion=registrarCliente" class="btn btn-primary" style="display: block; text-align: center; padding: 12px; background-color: #27ae60; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Crear Cuenta</a>
+        </div>
+        
         <p class="text-center" style="color: #666; font-size: 12px;">© 2026 Sistema Veterinario VetControl</p>
     </div>
 </body>

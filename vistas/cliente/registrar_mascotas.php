@@ -1,3 +1,11 @@
+<?php
+if (session_status() == PHP_SESSION_NONE){
+    session_start();
+}
+if(!isset($_SESSION["usuario"])){
+    header("Location: index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,17 +21,17 @@
             <p class="text-muted" style="margin-bottom: 20px;">Completa el formulario para registrar una nueva mascota</p>
             
             <form method="POST" action="index.php?accion=guardarMascota">
-                <label for="id_cliente">Propietario (DUI o ID)</label>
-                <input type="text" id="id_cliente" name="id_dueño" placeholder="Ej: 12345678-9" required>
+                <label>Propietario</label>
+                <input type="text" disabled value="<?php echo htmlspecialchars($perfil["nombre"] . " " . $perfil["apellido"]); ?>" placeholder="Propietario" style="background-color: #f0f0f0;">
 
                 <label for="nombre_mascota">Nombre de la Mascota</label>
-                <input type="text" id="nombre_mascota" name="nombre_mascota" placeholder="Ej: Firulais" required>
+                <input type="text" id="nombre_mascota" name="nombre_mascota" placeholder="Firulais" required>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
                         <label for="especie">Especie </label>
                         <select id="especie" name="especie" required>
-                            <option value="">Selecciona una especie</option>
+                            <option value="">-- Selecciona --</option>
                             <option value="Perro"> Perro</option>
                             <option value="Gato"> Gato</option>
                             <option value="Conejo"> Conejo</option>
@@ -35,7 +43,7 @@
 
                     <div>
                         <label for="raza">Raza</label>
-                        <input type="text" id="raza" name="raza" placeholder="Ej: Labrador Retriever">
+                        <input type="text" id="raza" name="raza" placeholder="Labrador Retriever">
                     </div>
                 </div>
 
@@ -46,8 +54,8 @@
                     </div>
 
                     <div>
-                        <label for="peso">Peso (kg)</label>
-                        <input type="number" id="peso" name="peso" placeholder="Ej: 25.5" step="0.1">
+                        <label for="peso">Peso (lb)</label>
+                        <input type="decimal" id="peso" name="peso" placeholder="00.0" step="0.1">
                     </div>
                 </div>
 

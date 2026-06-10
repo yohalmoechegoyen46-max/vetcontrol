@@ -6,9 +6,9 @@ class Cliente {
     public function __construct(){
         $this->conexion = Conexion::conectar();
     }
-    public function guardar($nombre,$apellido,$dui,$telefono,$correo){
-        $sql = "INSERT INTO clientes(nombre,apellido,dui,telefono,correo) 
-        VALUES ('$nombre','$apellido','$dui','$telefono','$correo')";
+    public function guardar($nombre,$apellido,$usuario,$clave,$dui,$telefono,$correo,$id_usuario) {
+        $sql = "INSERT INTO clientes(nombre,apellido,usuario,clave,dui,telefono,correo,id_usuario) 
+        VALUES ('$nombre','$apellido','$usuario','$clave','$dui','$telefono','$correo','$id_usuario')";
         return $this->conexion->query($sql);
     }
     public function obtenerClientes() {
@@ -16,5 +16,9 @@ class Cliente {
         return $this->conexion->query($sql);
     }
     
+    public function obtenerPorUsuario($usuario) {
+        $sql = "SELECT * FROM clientes WHERE usuario='$usuario'";
+        return $this->conexion->query($sql);
+    }
+    
 }
-?>

@@ -26,10 +26,11 @@ html {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--gray-light);
+    background: white;
     color: var(--text);
     line-height: 1.6;
     font-size: 14px;
+
 }
 
 /* Layouts */
@@ -54,6 +55,7 @@ body {
 .contenido {
     min-height: 100vh;
     padding: 20px;
+
 }
 
 .formulario {
@@ -64,6 +66,22 @@ body {
     max-width: 600px;
     margin: 20px auto;
 }
+.bienvenida-box {
+            background: linear-gradient(135deg, #1abc9c, #2ecc71); /* Un tono verde amigable para clientes */
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .bienvenida-box h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+        .bienvenida-box p {
+            margin: 8px 0 0 0;
+            opacity: 0.9;
+        }
 
 /* Formularios */
 label {
@@ -203,7 +221,7 @@ nav a {
 
 nav a:hover,
 nav a.active {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgb(255, 255, 255);
 }
 
 /* Tablas */
