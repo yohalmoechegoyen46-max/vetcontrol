@@ -25,6 +25,16 @@
             <button type="submit">Ingresar</button>
         </form>
 
+<<<<<<< HEAD
+=======
+        <hr style="margin: 25px 0; opacity: 0.5;">
+        
+        <div style="margin-bottom: 20px;">
+            <a href="index.php?accion=registrarCliente" class="btn btn-primary" style="display: block; text-align: center; padding: 12px; background-color: #27ae60; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Crear Cuenta</a>
+        </div>
+        
+        <p class="text-center" style="color: #666; font-size: 12px;">© 2026 Sistema Veterinario VetControl</p>
+>>>>>>> cc24656b60874b9b678e7c6d89efec09eebf26ab
     </div>
 </body>
 </html>
