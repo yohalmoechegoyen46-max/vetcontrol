@@ -23,7 +23,7 @@ if(!isset($_SESSION["usuario"])){
             <form method="POST" action="index.php?accion=guardarMascota">
                 <label>Propietario</label>
                 <input type="text" disabled value="<?php echo htmlspecialchars($perfil["nombre"] . " " . $perfil["apellido"]); ?>" placeholder="Propietario" style="background-color: #f0f0f0;">
-
+                
                 <label for="nombre_mascota">Nombre de la Mascota</label>
                 <input type="text" id="nombre_mascota" name="nombre_mascota" placeholder="Firulais" required>
 
