@@ -1,18 +1,32 @@
 <?php
 session_start();
 
+/**
+ * Entry point de la aplicación.
+ *
+ * Aquí se manejan las rutas simples mediante el parámetro GET "accion".
+ * Cada acción llama al controlador correspondiente para mostrar una vista o
+ * procesar un formulario.
+ */
+
+// Mostrar errores en pantalla para facilitar la depuración temporalmente
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once "controladores/LoginControlador.php";
 require_once "controladores/ClienteControlador.php";
 require_once "controladores/MascotaControlador.php";
-require_once "controladores/AdminControlador.php";
+require_once "controladores/CitaControlador.php";
 
 $login = new LoginControlador();
 $cliente = new ClienteControlador();
 $mascota = new MascotaControlador();
-$admin = new AdminControlador();
+$cita = new CitaControlador();
 
 $accion = isset($_GET["accion"]) ? $_GET["accion"] : "";
 
+// Enrutamiento básico: cada valor de accion ejecuta un método.
 switch ($accion) {
 
     case "validar":
@@ -42,25 +56,24 @@ switch ($accion) {
     case "guardarMascota":
         $mascota->guardarMascota();
         break;
-    
+
+    case "agendar":
     case "agendarCita":
-        $cliente->agendarCita();
+        $cita->formulario();
         break;
 
     case "guardarCita":
-        $cliente->guardarCita();
+        $cita->guardarCita();
         break;
 
-
-    case "perfilCliente":
-        $cliente->perfilCliente();
+    case "editarCita":
+        $cita->editarCita();
         break;
 
-     //ADMIN ----(!!NO TOCAR!!)----
-
-    case "dashboardAdmin":
-        $admin->dashboardAdmin();
+    case "actualizarCita":
+        $cita->actualizarCita();
         break;
+
         //CLIENTES
     case "listarClientes":
         $admin->listarClientes();
@@ -114,6 +127,14 @@ switch ($accion) {
     //CITAS
     case "listarCitas":
         $admin->listarCitas();
+
+
+    case "eliminarCita":
+        $cita->eliminarCitaAction();
+        break;
+
+    case "citasAgendadas":
+        $cita->listarCitas();
         break;
 
     default:

@@ -3,6 +3,11 @@ require_once "modelos/Cita.php";
 require_once "modelos/Mascota.php";
 require_once "modelos/Veterinario.php";
 
+/**
+ * Controlador para la gestión de citas.
+ *
+ * Provee la vista de agendado y las acciones de CRUD para citas.
+ */
 class CitaControlador {
     public function formulario() {
         $mascotaModel = new Mascota();
@@ -55,6 +60,76 @@ class CitaControlador {
         }
 
         require_once __DIR__ . "/../vistas/citas_agendadas.php";
+    }
+
+    public function editarCita() {
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+        if (!$id) {
+            header('Location: index.php?accion=citasAgendadas');
+            exit;
+        }
+
+        $citaModel = new Cita();
+        $citaRes = $citaModel->obtenerCita($id);
+        $cita = null;
+        if ($citaRes) {
+            $cita = $citaRes->fetch_assoc();
+        }
+
+        $mascotaModel = new Mascota();
+        $mascotasRes = $mascotaModel->obtenerMascotas();
+        $mascotas = [];
+        if ($mascotasRes) {
+            while ($m = $mascotasRes->fetch_assoc()) {
+                $mascotas[] = $m;
+            }
+        }
+
+        $veterinarioModel = new Veterinario();
+        $veterinariosRes = $veterinarioModel->obtenerVeterinarios();
+        $veterinarios = [];
+        if ($veterinariosRes) {
+            while ($v = $veterinariosRes->fetch_assoc()) {
+                $veterinarios[] = $v;
+            }
+        }
+
+        require_once __DIR__ . "/../vistas/editar_cita.php";
+    }
+
+    public function actualizarCita() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $id = isset($_POST['id_cita']) ? $_POST['id_cita'] : null;
+            $fecha = isset($_POST['fecha']) ? $_POST['fecha'] : null;
+            $hora = isset($_POST['hora']) ? $_POST['hora'] : null;
+            $motivo = isset($_POST['motivo']) ? $_POST['motivo'] : '';
+
+            if (!$id) {
+                header('Location: index.php?accion=citasAgendadas');
+                exit;
+            }
+
+            $modelo = new Cita();
+            $res = $modelo->actualizarCita($id, $fecha, $hora, $motivo);
+            if ($res) {
+                header('Location: index.php?accion=citasAgendadas&msg=actualizado');
+                exit;
+            } else {
+                $err = $modelo->getError();
+                header('Location: index.php?accion=citasAgendadas&msg=error&err=' . urlencode($err));
+                exit;
+            }
+        }
+    }
+
+    public function eliminarCitaAction() {
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+        if ($id) {
+            $modelo = new Cita();
+            $modelo->eliminarCita($id);
+        }
+        header('Location: index.php?accion=citasAgendadas');
+        exit;
     }
 
     public function guardarCita() {

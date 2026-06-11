@@ -2,30 +2,31 @@
 
 require_once __DIR__ . "/../conexion/conexion.php";
 
+/**
+ * Modelo para la entidad Usuario.
+ *
+ * Provee la validación de acceso al sistema.
+ */
 class Usuario{
+    /** @var mysqli */
     private $conexion;
 
     public function __construct() {
         $this->conexion = Conexion::conectar();
     }
 
-    //Registrar un nuevo usuario
-    public function registrar($usuario, $clave, $id_rol) {
-        $sql = "INSERT INTO usuarios (usuario, clave, id_rol) VALUES ('$usuario', '$clave', '$id_rol')";
-        return $this->conexion->query($sql);
-    }
-
-    //Obtener el ultimo usuario registrado
-    public function obtenerUltimoUsuario() {
-        $sql = "SELECT * FROM usuarios ORDER BY id_usuario DESC LIMIT 1";
-        return $this->conexion->query($sql);
-    }
-    //Validar usuario para login
-    public function validar($usuario,$clave){
+    /**
+     * Valida credenciales de acceso.
+     *
+     * @param string $usuario
+     * @param string $password
+     * @return mysqli_result
+     */
+    public function validar($usuario,$password){
         $sql = "SELECT * FROM usuarios 
-        WHERE usuario='$usuario' AND clave='$clave'";
+        WHERE usuario='$usuario' AND password='$password'";
         return $this->conexion->query($sql);    
-    }
+
     //Actualizar usuario
  public function actualizar($usuario, $clave, $id_rol, $id_cliente) {
     $consulta = $this->conexion->query("SELECT id_usuario FROM clientes WHERE id_cliente = '$id_cliente'");
@@ -51,7 +52,7 @@ class Usuario{
     return $this->conexion->query($sql);
 }
 
-
+    }
 
 }
 ?>
