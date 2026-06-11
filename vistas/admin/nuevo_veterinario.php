@@ -11,7 +11,7 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["id_rol"] != 1){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevos Clientes - Sistema Veterinario</title>
+    <title>Nuevos Veterinarios - Sistema Veterinario</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
@@ -41,16 +41,16 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["id_rol"] != 1){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <br><br>
     <div class="container-fluid">
-        <h1>Nuevos Clientes</h1>
+        <h1>Nuevos Veterinarios</h1>
         <br><br>
         <div class="row">
             <div class="col-md-10">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
-                        <h3 class="card-title"><b>Datos del cliente</b></h3>
+                        <h3 class="card-title"><b>Datos del veterinario</b></h3>
                     </div>
                     <div class="card-body">
-                        <form action="index.php?accion=guardarC" method="POST">
+                        <form action="index.php?accion=guardarV" method="POST">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -64,22 +64,11 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["id_rol"] != 1){
                                         <input type="text" class="form-control" id="apellido" name="apellido" required>
                                      </div>
                                 </div>
+                
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="usuario">Usuario:</label>
-                                        <input type="text" class="form-control" id="usuario" name="usuario" required>
-                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="clave">Contraseña:</label>
-                                        <input type="password" class="form-control" id="clave" name="clave" required>
-                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="dui">Documento (DUI):</label>
-                                        <input type="text" class="form-control" id="dui" name="dui" required>
+                                        <label for="especialidad">Especialidad:</label>
+                                        <input type="text" class="form-control" id="especialidad" name="especialidad" required>
                                      </div>
                                 </div>
                                 <div class="col-md-3">
@@ -88,18 +77,11 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["id_rol"] != 1){
                                         <input type="text" class="form-control" id="telefono" name="telefono" required>
                                      </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="correo">Correo:</label>
-                                        <input type="email" class="form-control" id="correo" name="correo" required>
-                                     </div>
-                                </div>
-                           </div> 
                            <hr>
                             <div class="row">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary"><i class="bi bi-save-fill"></i> Guardar</button>
-                                    <a href="index.php?accion=listarClientes" class="btn btn-secondary"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
+                                    <a href="index.php?accion=listarVeterinarios" class="btn btn-secondary"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
                                 </div>
                             </div>
                         </form>

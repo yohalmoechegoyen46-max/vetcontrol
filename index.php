@@ -61,23 +61,57 @@ switch ($accion) {
     case "dashboardAdmin":
         $admin->dashboardAdmin();
         break;
-
+        //CLIENTES
     case "listarClientes":
         $admin->listarClientes();
         break;
 
-    case "nuevoCliente":
-        $admin->nuevoCliente();
+    case "nuevoC":
+        $admin->nuevoC();
         break;
 
+    case "guardarC":
+        $admin->guardarC();
+        break;
+    
+    case "actualizarC":
+        $admin->actualizarC();
+        break;
+    
+    case "eliminarC":
+    $admin->eliminarC();
+    break;
+    //MASCOTAS
     case "listarMascotas":
         $admin->listarMascotas();
         break;
 
+    //VETERINARIOS
     case "listarVeterinarios":
         $admin->listarVeterinarios();
         break;
+    
+    case "nuevoV":
+        $admin->nuevoV();
+        break;
+    
+    case "guardarV":
+        $admin->guardarV();
+        break;
 
+    case "editarV":
+        $admin->editarV();
+        break;
+
+    case "actualizarV":
+        $admin->actualizarV();
+        break;
+    
+    case "eliminarV":
+    $admin->eliminarV();
+    break;
+
+    //CITAS
     case "listarCitas":
         $admin->listarCitas();
         break;

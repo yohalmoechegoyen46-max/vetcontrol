@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2026 a las 03:06:38
+-- Tiempo de generación: 11-06-2026 a las 02:35:13
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -35,6 +35,13 @@ CREATE TABLE `citas` (
   `id_veterinario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `citas`
+--
+
+INSERT INTO `citas` (`id_cita`, `fecha_hora`, `estado`, `id_mascota`, `id_veterinario`) VALUES
+(1, '2026-07-12 00:00:00', 'Pendiente', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -50,25 +57,26 @@ CREATE TABLE `clientes` (
   `dui` varchar(10) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `correo` varchar(100) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL
+  `id_usuario` int(11) DEFAULT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id_cliente`, `nombre`, `apellido`, `usuario`, `clave`, `dui`, `telefono`, `correo`, `id_usuario`) VALUES
-(1, 'Dora', 'Luz', '', '', '1234567-8', '70707070', 'd@gmail.com', NULL),
-(5, 'Nahun', 'Echegoyen', '', '', '12345678', '70707070', 'yohalmoechegoyen46@gmail.com', NULL),
-(6, 'Jonathan', 'Henriquez', 'jona', '123', '1234567-8', '7080 9090', 'jona@gmail.com', 5),
-(7, 'heber', 'mijango', 'heber', '1234', '12345667', '+50370707070', 'heber@gmail.com', 6),
-(8, 'Osmin', 'Henriquez', 'osmin', '1234', '1234567-8', '7080 9090', 'o@gmail.com', 7),
-(11, 'Rodolfo', 'Garcia', 'rodo', '1', '1234567-8', '8583 5876', 'rodo@gmail.com', 10),
-(12, 'Luis', 'Soriano', 'luis', '1234', '1234567-9', '8583 5876', 'luis@gmail.com', 11),
-(13, 'Juan', 'Espinoza', 'juan', '1', '1234567-9', '+503 7040-5035', 'juan@gmail.com', 12),
-(14, 'Carlos', 'Aguilar', 'carlos', '1', '1234567-9', '8583 5876', 'carlos@gmail.com', 13),
-(15, 'j', 'j', 'j', '1', '1234567-9', '1', 'j@gmail.com', 14),
-(16, 'j', 'j', 'j', 'j', '1234567-8', '1', 'j@gmail.com', 15);
+INSERT INTO `clientes` (`id_cliente`, `nombre`, `apellido`, `usuario`, `clave`, `dui`, `telefono`, `correo`, `id_usuario`, `fecha_creacion`) VALUES
+(1, 'Lucy', 'De Echegoyen', 'lucy', '1234', '1234567-8', '7070-7070', 'd@gmail.com', 18, '2026-06-10 06:00:00'),
+(6, 'Jonathan', 'Henriquez', 'jona', '123', '1234567-8', '7080 9090', 'jona@gmail.com', 5, '2026-06-10 06:00:00'),
+(8, 'Osmin', 'Henriquez', 'osmin', '1234', '1234567-8', '7080 9090', 'o@gmail.com', 7, '2026-06-10 06:00:00'),
+(11, 'Rodolfo', 'Garcia', 'rodo', '1', '1234567-8', '8583 5876', 'rodo@gmail.com', 10, '2026-06-10 06:00:00'),
+(12, 'Luis', 'Soriano', 'luis', '1234', '1234567-9', '8583 5876', 'luis@gmail.com', 11, '2026-06-10 06:00:00'),
+(13, 'Juan', 'Espinoza', 'juan', '1', '1234567-9', '7040-5035', 'juan@gmail.com', 12, '2026-06-10 06:00:00'),
+(14, 'Carlos', 'Aguilar', 'carlos', '1', '1234567-9', '8583 5876', 'carlos@gmail.com', 13, '2026-06-10 06:00:00'),
+(15, 'Junior', 'Juarez', 'jj@gmail.com', '1', '1234567-9', '4345-6767', 'j@gmail.com', 14, '2026-06-10 06:00:00'),
+(17, 'Yoha', 'Henriquez', 'yoham', '1', '1234567-5', '7042-8080', 'y@gmail.com', 16, '2026-06-10 06:00:00'),
+(18, 'Josue', 'Aguilar', 'josue', '1', '1234567-9', '7042-8080', 'y@gmail.com', 17, '2026-06-10 06:00:00'),
+(20, 'Fatima', 'Guerrero', 'faty', '1', '1234567-9', '7070-7070', 'f@gmail.com', 21, '2026-06-10 22:14:10');
 
 -- --------------------------------------------------------
 
@@ -116,6 +124,13 @@ CREATE TABLE `mascotas` (
   `id_cliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `mascotas`
+--
+
+INSERT INTO `mascotas` (`id_mascota`, `nombre`, `especie`, `raza`, `fecha_nacimiento`, `peso`, `id_cliente`) VALUES
+(1, 'Lanh', 'Gato', 'Siames', '2025-06-04', 5, 11);
+
 -- --------------------------------------------------------
 
 --
@@ -133,7 +148,6 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id_rol`, `nombre_rol`) VALUES
 (1, 'Administrador'),
-(2, 'Veterinario'),
 (3, 'Cliente');
 
 -- --------------------------------------------------------
@@ -158,15 +172,17 @@ INSERT INTO `usuarios` (`id_usuario`, `usuario`, `clave`, `id_rol`) VALUES
 (2, 'Rodrigo', 'itca123', 1),
 (3, 'Fatima', 'itca123', 1),
 (4, 'Geremias', 'itca123', 1),
-(5, 'jona', '123', 3),
-(6, 'heber', '1234', 3),
+(5, 'jona', '2', 3),
 (7, 'osmin', '1234', 3),
 (10, 'rodo', '1', 3),
 (11, 'luis', '1234', 3),
 (12, 'juan', '1', 3),
 (13, 'carlos', '1', 3),
 (14, 'j', '1', 3),
-(15, 'j', 'j', 3);
+(16, 'yoham', '1', 3),
+(17, 'josue', '1', 3),
+(18, 'dora', '124', 3),
+(21, 'faty', '1', 3);
 
 -- --------------------------------------------------------
 
@@ -201,7 +217,9 @@ CREATE TABLE `veterinarios` (
 --
 
 INSERT INTO `veterinarios` (`id_veterinario`, `nombre`, `apellido`, `especialidad`, `telefono`) VALUES
-(1, 'Juan', 'Lemus', 'Dermatologia', '6078-9089');
+(1, 'Jose', 'Lemus', 'Dermatologia', '6078-9089'),
+(2, 'Jose', 'Rivas', 'Cardiologia', '8080-9889'),
+(3, 'Cristian', 'Palacios', 'Oncologia', '6767-7676');
 
 --
 -- Índices para tablas volcadas
@@ -279,13 +297,13 @@ ALTER TABLE `veterinarios`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_cita`
@@ -303,7 +321,7 @@ ALTER TABLE `historial_medico`
 -- AUTO_INCREMENT de la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
-  MODIFY `id_mascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_mascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -315,7 +333,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `vacunas`
@@ -327,7 +345,7 @@ ALTER TABLE `vacunas`
 -- AUTO_INCREMENT de la tabla `veterinarios`
 --
 ALTER TABLE `veterinarios`
-  MODIFY `id_veterinario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_veterinario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
